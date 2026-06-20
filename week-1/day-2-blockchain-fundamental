@@ -1,0 +1,246 @@
+# Day 2: Blockchain Fundamentals for Auditors
+
+## Objective
+
+Understand how blockchain works, how transactions are processed, and why blockchain fundamentals are essential for smart contract auditing.
+
+---
+
+## What is a Blockchain?
+
+A blockchain is a decentralized and distributed ledger that records transactions across multiple computers. Once data is added to the blockchain, it becomes extremely difficult to modify or delete.
+
+### Key Characteristics
+
+* Decentralized
+* Transparent
+* Immutable
+* Secure
+* Distributed
+
+---
+
+## Components of a Blockchain
+
+### Blocks
+
+A block contains:
+
+* Transaction Data
+* Block Hash
+* Previous Block Hash
+* Timestamp
+
+### Chain
+
+Blocks are linked together using cryptographic hashes, forming a blockchain.
+
+---
+
+## What is Ethereum?
+
+Ethereum is a decentralized blockchain platform that allows developers to deploy and execute smart contracts.
+
+Unlike Bitcoin, Ethereum supports programmable applications.
+
+### Main Features
+
+* Smart Contracts
+* Decentralized Applications (DApps)
+* Native Currency (ETH)
+* Ethereum Virtual Machine (EVM)
+
+---
+
+## Types of Accounts in Ethereum
+
+### Externally Owned Account (EOA)
+
+Controlled by a private key.
+
+Examples:
+
+* MetaMask Wallet
+* Trust Wallet
+
+Can:
+
+* Send transactions
+* Hold ETH
+* Interact with contracts
+
+---
+
+### Contract Account
+
+Controlled by smart contract code.
+
+Can:
+
+* Store data
+* Execute functions
+* Interact with other contracts
+
+Cannot:
+
+* Initiate transactions by itself
+
+---
+
+## Transactions
+
+A transaction is an action submitted to the blockchain.
+
+Examples:
+
+* Sending ETH
+* Deploying a contract
+* Calling a smart contract function
+
+### Transaction Lifecycle
+
+```text
+User Creates Transaction
+            ↓
+Transaction Sent To Network
+            ↓
+Validators Verify Transaction
+            ↓
+Included In Block
+            ↓
+Block Added To Blockchain
+```
+
+---
+
+## Gas
+
+Gas is the fee required to perform operations on Ethereum.
+
+Gas prevents:
+
+* Spam attacks
+* Infinite loops
+* Network abuse
+
+### Formula
+
+Gas Fee = Gas Used × Gas Price
+
+Example:
+
+```text
+Gas Used = 21,000
+Gas Price = 20 Gwei
+
+Fee = 420,000 Gwei
+```
+
+---
+
+## Smart Contracts
+
+Smart contracts are self-executing programs stored on the blockchain.
+
+### Benefits
+
+* Automation
+* Transparency
+* Trustlessness
+* Security
+
+Example:
+
+```solidity
+contract Counter {
+    uint256 public count;
+
+    function increment() public {
+        count++;
+    }
+}
+```
+
+---
+
+## Consensus Mechanism
+
+Ethereum uses Proof of Stake (PoS).
+
+Validators:
+
+* Verify transactions
+* Create blocks
+* Secure the network
+
+Validators stake ETH to participate.
+
+---
+
+## Why Auditors Must Understand Blockchain
+
+Auditors need blockchain knowledge to:
+
+* Understand transaction flow
+* Analyze attack vectors
+* Identify protocol risks
+* Evaluate smart contract behavior
+* Understand gas-related issues
+
+Without blockchain fundamentals, advanced security concepts become difficult to understand.
+
+---
+
+## Key Terms
+
+| Term             | Meaning                              |
+| ---------------- | ------------------------------------ |
+| Block            | Collection of transactions           |
+| Hash             | Unique cryptographic fingerprint     |
+| Node             | Computer running blockchain software |
+| Validator        | Entity that verifies transactions    |
+| Gas              | Fee for executing operations         |
+| Smart Contract   | Program running on blockchain        |
+| EOA              | User-controlled account              |
+| Contract Account | Code-controlled account              |
+
+---
+
+## What I Learned
+
+Today I learned how blockchain technology works and how Ethereum processes transactions. I understood the difference between EOAs and Contract Accounts, learned the role of gas fees, and explored how smart contracts operate on Ethereum. I also learned why blockchain fundamentals are essential for identifying security vulnerabilities during smart contract audits.
+
+---
+
+## Homework
+
+* Research Ethereum Architecture.
+* Create an Ethereum Wallet using MetaMask.
+* Send a test transaction on Sepolia Testnet.
+* Learn the difference between Mainnet and Testnet.
+
+---
+
+## Progress Tracker
+
+* [ ] Understand Blockchain Basics
+* [ ] Understand Ethereum
+* [ ] Learn Transaction Flow
+* [ ] Learn Gas Concept
+* [ ] Create MetaMask Wallet
+* [ ] Send Testnet Transaction
+* [ ] Complete Notes
+
+---
+
+### Next Lesson
+
+Day 3: Ethereum Virtual Machine (EVM) Fundamentals
+
+* EVM Architecture
+* Bytecode
+* Opcodes
+* Storage
+* Memory
+* Calldata
+* Execution Flow
