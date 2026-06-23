@@ -1,0 +1,333 @@
+# Day 3: Introduction to the Ethereum Virtual Machine (EVM)
+
+## Objective
+
+Understand what the Ethereum Virtual Machine (EVM) is, how it executes smart contracts, and why EVM knowledge is essential for smart contract auditing.
+
+---
+
+# What is the EVM?
+
+The Ethereum Virtual Machine (EVM) is the runtime environment responsible for executing smart contracts on Ethereum.
+
+Think of the EVM as a global decentralized computer that runs the same code on thousands of nodes.
+
+Every Ethereum node executes smart contract code using the EVM.
+
+---
+
+# Why Auditors Must Learn the EVM
+
+Many vulnerabilities cannot be understood by reading Solidity alone.
+
+Auditors need EVM knowledge to understand:
+
+* Storage manipulation
+* Delegatecall attacks
+* Gas optimization
+* Contract execution flow
+* Low-level vulnerabilities
+
+Professional auditors spend significant time understanding EVM behavior.
+
+---
+
+# EVM Architecture
+
+The EVM consists of:
+
+```text
+User Transaction
+       ↓
+Smart Contract
+       ↓
+Solidity Compiler
+       ↓
+Bytecode
+       ↓
+EVM Execution
+       ↓
+State Changes
+```
+
+---
+
+# Compilation Process
+
+When Solidity code is compiled:
+
+```solidity
+contract Counter {
+    uint256 public count;
+
+    function increment() public {
+        count++;
+    }
+}
+```
+
+The Solidity compiler converts it into:
+
+* Bytecode
+* ABI (Application Binary Interface)
+
+The EVM executes bytecode, not Solidity.
+
+---
+
+# What is Bytecode?
+
+Bytecode is machine-readable code executed by the EVM.
+
+Example:
+
+```text
+608060405234801561001057600080fd5b50...
+```
+
+Humans cannot easily read bytecode.
+
+Auditors often analyze bytecode during advanced reviews.
+
+---
+
+# EVM Components
+
+## 1. Stack
+
+The EVM uses a stack-based architecture.
+
+Characteristics:
+
+* Maximum 1024 items
+* Last In First Out (LIFO)
+
+Example:
+
+```text
+PUSH 5
+PUSH 10
+ADD
+
+Result = 15
+```
+
+---
+
+## 2. Memory
+
+Memory is temporary storage.
+
+Characteristics:
+
+* Exists only during execution
+* Cleared after transaction ends
+* Cheaper than storage
+
+Used for:
+
+* Function execution
+* Temporary variables
+
+---
+
+## 3. Storage
+
+Storage is permanent blockchain data.
+
+Characteristics:
+
+* Stored on-chain
+* Expensive
+* Persists forever
+
+Example:
+
+```solidity
+uint256 public totalSupply;
+```
+
+Stored in contract storage.
+
+---
+
+## 4. Calldata
+
+Calldata contains input data sent to a function.
+
+Example:
+
+```solidity
+transfer(address recipient, uint256 amount)
+```
+
+Recipient and amount are stored in calldata.
+
+Characteristics:
+
+* Read-only
+* Temporary
+* Gas efficient
+
+---
+
+# Storage vs Memory vs Calldata
+
+| Feature    | Storage | Memory      | Calldata      |
+| ---------- | ------- | ----------- | ------------- |
+| Permanent  | Yes     | No          | No            |
+| Modifiable | Yes     | Yes         | No            |
+| Gas Cost   | High    | Medium      | Low           |
+| Lifetime   | Forever | Transaction | Function Call |
+
+---
+
+# Opcodes
+
+Opcodes are low-level instructions executed by the EVM.
+
+Examples:
+
+| Opcode | Meaning             |
+| ------ | ------------------- |
+| ADD    | Addition            |
+| SUB    | Subtraction         |
+| MUL    | Multiplication      |
+| PUSH   | Push value to stack |
+| POP    | Remove value        |
+| SLOAD  | Read storage        |
+| SSTORE | Write storage       |
+| CALL   | External call       |
+
+---
+
+# Gas and the EVM
+
+Every opcode consumes gas.
+
+Example:
+
+```text
+ADD = Low Gas
+SLOAD = Higher Gas
+SSTORE = Very Expensive
+```
+
+Understanding gas helps auditors identify:
+
+* DoS risks
+* Gas griefing attacks
+* Optimization opportunities
+
+---
+
+# Function Selectors
+
+Each function has a unique selector.
+
+Example:
+
+```solidity
+transfer(address,uint256)
+```
+
+Produces:
+
+```text
+a9059cbb
+```
+
+The EVM uses selectors to determine which function to execute.
+
+---
+
+# Contract Deployment
+
+Deployment process:
+
+```text
+Write Solidity
+       ↓
+Compile
+       ↓
+Generate Bytecode
+       ↓
+Send Deployment Transaction
+       ↓
+Contract Address Created
+```
+
+Once deployed:
+
+* Code becomes immutable
+* Users interact through transactions
+
+---
+
+# Auditor Perspective
+
+When reviewing a contract, ask:
+
+* Where is data stored?
+* Is storage manipulated safely?
+* Are external calls dangerous?
+* Can gas usage be abused?
+* Are low-level calls secure?
+
+Understanding EVM internals helps answer these questions.
+
+---
+
+# Key Terms
+
+| Term     | Meaning                        |
+| -------- | ------------------------------ |
+| EVM      | Ethereum Virtual Machine       |
+| Bytecode | Machine-readable contract code |
+| Stack    | Temporary execution data       |
+| Storage  | Permanent blockchain data      |
+| Memory   | Temporary writable data        |
+| Calldata | Read-only function input       |
+| Opcode   | Low-level instruction          |
+
+---
+
+# What I Learned
+
+Today I learned how the Ethereum Virtual Machine (EVM) executes smart contracts. I understood the difference between storage, memory, and calldata, learned about bytecode and opcodes, and explored how transactions are processed within the EVM. I also learned why understanding EVM internals is crucial for identifying vulnerabilities during smart contract audits.
+
+---
+
+# Homework
+
+1. Install Foundry (if not already installed).
+2. Read about:
+
+   * Storage
+   * Memory
+   * Calldata
+3. Search:
+
+   * What is SLOAD?
+   * What is SSTORE?
+4. Watch Patrick Collins' EVM introduction lesson.
+5. Create notes on Stack, Storage, Memory, and Calldata.
+
+---
+
+# Progress Tracker
+
+* [ ] Understand EVM Basics
+* [ ] Learn Stack Architecture
+* [ ] Understand Storage
+* [ ] Understand Memory
+* [ ] Understand Calldata
+* [ ] Learn Bytecode Concept
+* [ ] Learn Opcodes
+* [ ] Complete Notes
+
+---
+
+### Next Lesson
+
+Day 4: Solidity Data Locations (Storage, Memory, Calldata Deep Dive)
